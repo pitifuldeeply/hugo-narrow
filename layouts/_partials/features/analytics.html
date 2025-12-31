@@ -14,4 +14,12 @@
   {{ if .Site.Params.analytics.umami.enabled -}}
     {{ partial "features/analytics/umami.html" . }}
   {{- end }}
+
+  {{ if .Site.Params.analytics.vercel.enabled -}}
+    {{ partial "features/analytics/vercel.html" . }}
+  {{- end }}
+
+  {{ if .Site.Params.analytics.vercel.speedInsights -}}
+    {{ partial "features/analytics/vercel-speed-insights.html" . }}
+  {{- end }}
 {{- end }}
