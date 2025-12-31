@@ -59,7 +59,10 @@
           {{- $tocEnabled = .Params.toc }}
         {{- end }}
       {{- end }}
-      {{- if $tocEnabled }}
+      {{- if isset .Params "tocenabled" }}
+        {{- $tocEnabled = .Params.tocenabled }}
+      {{- end }}
+      {{- if and $tocEnabled (findRE "<li>" .TableOfContents) }}
         {{ partial "ui/toc-sidebar.html" . }}
       {{- end }}
     {{- end }}
@@ -85,7 +88,10 @@
           {{- $tocEnabled = .Params.toc }}
         {{- end }}
       {{- end }}
-      {{- if and $tocEnabled .TableOfContents }}
+      {{- if isset .Params "tocenabled" }}
+        {{- $tocEnabled = .Params.tocenabled }}
+      {{- end }}
+      {{- if and $tocEnabled (findRE "<li>" .TableOfContents) }}
         {{ partial "ui/toc-card.html" . }}
       {{- end }}
     {{- end }}

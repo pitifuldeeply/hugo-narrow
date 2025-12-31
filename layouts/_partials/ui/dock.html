@@ -59,8 +59,11 @@
           {{- $tocEnabled = .Params.toc }}
         {{- end }}
       {{- end }}
+      {{- if isset .Params "tocenabled" }}
+        {{- $tocEnabled = .Params.tocenabled }}
+      {{- end }}
 
-      {{- if $tocEnabled }}
+      {{- if and $tocEnabled (findRE "<li>" .TableOfContents) }}
         {{- $tocPosition := $globalTocConfig.position | default "card" }}
         {{/* frontmatter 参数覆盖 */}}
         {{- if isset .Params "toc" }}
