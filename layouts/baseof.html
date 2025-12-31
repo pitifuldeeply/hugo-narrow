@@ -94,5 +94,8 @@
 
     <!-- 搜索组件 -->
     {{ partial "ui/search-modal.html" . }}
+
+    {{ $infiniteScroll := resources.Get "js/infinite-scroll.js" | resources.Minify | resources.Fingerprint }}
+    <script src="{{ $infiniteScroll.RelPermalink }}" defer></script>
   </body>
 </html>

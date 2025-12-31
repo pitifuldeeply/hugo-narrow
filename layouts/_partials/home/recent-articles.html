@@ -1,0 +1,20 @@
+{{/* 最近文章区域 */}}
+{{/* Use pagination instead of fixed count for infinite scroll */}}
+{{ $paginator := .Paginate (where site.RegularPages "Section" "articles") }}
+{{ $articles := $paginator.Pages }}
+
+{{ partial "content/article-list.html" (dict
+  "articles" $articles
+  "title" (i18n "home.recent_posts" | default "Recent Articles")
+  "showTitle" true
+  "showViewAll" false
+  "viewAllUrl" ("/articles/" | relLangURL)
+  )
+}}
+
+{{ if $paginator.HasNext }}
+  <div id="load-more-trigger" data-next-page="{{ $paginator.Next.URL }}" class="flex justify-center py-8">
+    <!-- Loading spinner will be injected here by JS -->
+  </div>
+{{ end }}
+

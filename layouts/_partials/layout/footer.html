@@ -50,10 +50,14 @@
       <!-- 版权信息 -->
       <div class="text-muted-foreground text-sm text-center md:text-left">
         <p class="mb-2">
-          &copy; {{ now.Year }} {{ site.Title }}.
-          {{ i18n "footer.all_rights_reserved" }}.
+          Made with &hearts; by {{ site.Title }}
         </p>
-        <p class="flex flex-wrap items-center justify-center gap-1 md:justify-start">
+        <p class="text-xs text-muted-foreground/60">
+          <a href="{{ "privacy-policy" | relLangURL }}" class="hover:underline">{{ i18n "footer.privacy_policy" | default "Privacy Policy" }}</a>
+          &middot;
+          <a href="{{ "terms-of-service" | relLangURL }}" class="hover:underline">{{ i18n "footer.terms_of_service" | default "Terms of Service" }}</a>
+        </p>
+        <!-- <p class="flex flex-wrap items-center justify-center gap-1 md:justify-start">
           <span>Powered by</span>
           <a 
             href="https://gohugo.io/" 
@@ -72,7 +76,7 @@
           >
             Narrow
           </a>
-        </p>
+        </p> -->
       </div>
 
       <!-- 社交媒体图标 -->

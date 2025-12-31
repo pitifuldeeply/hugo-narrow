@@ -61,7 +61,7 @@ class UIManager {
 
   // 关闭其他类型的菜单 - 统一处理所有菜单类型
   closeOtherMenus(currentType) {
-    const allTypes = ['color-scheme', 'theme', 'language', 'mobile-menu'];
+    const allTypes = ['color-scheme', 'theme', 'language', 'mobile-menu', 'categories'];
     allTypes.forEach(type => {
       if (type !== currentType) {
         document.querySelectorAll(`.dropdown-menu[data-dropdown-type="${type}"]`)
@@ -140,6 +140,7 @@ class UIManager {
     this.setupDropdown("color-scheme");
     this.setupDropdown("theme");
     this.setupDropdown("language");
+    this.setupDropdown("categories");
 
     // 主题风格选择事件
     const colorSchemeDropdowns = document.querySelectorAll(

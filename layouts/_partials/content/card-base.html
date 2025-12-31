@@ -36,13 +36,13 @@
 {{- else if $page.Params.description -}}
   {{- $summaryContent = $page.Params.description -}}
 {{- else if $page.Summary -}}
-  {{- $summaryContent = $page.Summary | plainify | truncate 140 -}}
+  {{- $summaryContent = $page.Summary | plainify | htmlUnescape | replaceRE `\s+` " " | truncate 140 -}}
 {{- end -}}
 
 {{/* 文章卡片 */}}
 <article class="group">
-  <a href="{{ $page.RelPermalink }}" class="block">
-    <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none">
+  <a href="{{ $page.RelPermalink }}" class="block md:h-64">
+    <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 relative flex flex-col overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none h-full">
       <!-- 移动端顶部封面 -->
       <div class="block md:hidden">
         {{ partial "content/card-image.html" (dict "page" $page "type" "mobile" "coverImage" $coverImage "randomImage" $randomImage "useRandomImage" $useRandomImage "gradients" $gradients "colorIndex" $colorIndex) }}
@@ -59,13 +59,13 @@
       <!-- 文章内容区域 -->
       <div class="relative z-10 flex flex-1 flex-col p-6 md:pr-84">
         <!-- 文章标题 -->
-        <h3 class="text-foreground group-hover:text-primary mb-4 text-lg font-semibold leading-tight transition-colors duration-200">
+        <h3 class="text-foreground group-hover:text-primary mb-4 text-lg font-semibold leading-tight transition-colors duration-200 line-clamp-2">
           {{ $page.Title }}
         </h3>
 
         <!-- 文章摘要 -->
         {{ if $summaryContent }}
-          <p class="text-muted-foreground mb-4 text-sm leading-relaxed">
+          <p class="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
             {{ $summaryContent }}
           </p>
         {{ end }}

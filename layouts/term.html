@@ -51,9 +51,9 @@
   </header>
 
   <!-- 文章列表 -->
-  {{ $posts := .Pages }}
-  {{ if $posts }}
-    {{ partial "content/post-list.html" (dict "posts" $posts) }}
+  {{ $articles := .Pages }}
+  {{ if $articles }}
+    {{ partial "content/article-list.html" (dict "articles" $articles) }}
   {{ else }}
     <!-- 空状态 -->
     <div class="py-16 text-center">

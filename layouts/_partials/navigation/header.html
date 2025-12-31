@@ -1,14 +1,22 @@
-<header class="{{- if site.Params.header.sticky -}}sticky top-0 z-50{{ end }} mx-auto max-w-4xl px-4 py-6">
+<style>
+  .desktop-nav { display: none; }
+  .mobile-nav { display: flex; }
+  @media (min-width: 980px) {
+    .desktop-nav { display: flex; }
+    .mobile-nav { display: none; }
+  }
+</style>
+<header class="{{- if site.Params.header.sticky -}}sticky top-0 z-50{{ end }} mx-auto max-w-6xl px-4 py-6">
   <div
     class="border-border bg-card/80 flex items-center rounded-xl border px-6 py-4 shadow-sm backdrop-blur-sm">
     <!-- 桌面端布局 -->
-    <div class="hidden w-full items-center md:flex md:min-w-0">
+    <div class="desktop-nav w-full items-center">
       <!-- 左侧：站点 Logo -->
       <div class="flex items-center">
         {{ if ne site.Params.header.logo.image "" }}
           <a
             href="{{ if site.Params.header.logo.link }}{{ site.Params.header.logo.link | relLangURL }}{{ else }}{{ site.Home.RelPermalink }}{{ end }}"
-            class="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full transition-transform duration-200 hover:scale-105"
+            class="shrink-0 flex h-10 w-10 items-center justify-center overflow-hidden rounded-lg transition-transform duration-200 hover:scale-105"
             aria-label="{{ site.Title }}">
             <img
               src="{{ site.Params.header.logo.image }}"
@@ -19,16 +27,19 @@
           <!-- 默认 Logo：使用站点标题首字母 -->
           <a
             href="{{ site.Home.RelPermalink }}"
-            class="bg-primary text-primary-foreground hover:bg-primary/90 flex h-10 w-10 items-center justify-center rounded-full text-lg font-bold transition-transform duration-200 hover:scale-105"
+            class="shrink-0 bg-primary text-primary-foreground hover:bg-primary/90 flex h-10 w-10 items-center justify-center rounded-lg text-lg font-bold transition-transform duration-200 hover:scale-105"
             aria-label="{{ site.Title }}">
             {{ substr site.Title 0 1 | upper }}
           </a>
         {{ end }}
+        <a href="{{ site.Home.RelPermalink }}" class="ml-10 pl-6 whitespace-nowrap text-2xl font-bold text-muted-foreground hover:text-primary transition-colors">
+          {{ site.Title }}
+        </a>
       </div>
 
       <!-- 中间：桌面端导航 -->
-      <nav class="mx-8 flex flex-1 items-center justify-center min-w-0">
-        <div class="flex items-center space-x-1 flex-wrap justify-center">
+      <nav class="mx-8 flex flex-1 items-center justify-center">
+        <div class="flex items-center space-x-1">
           {{ $currentPage := . }}
           {{ range site.Menus.main }}
             {{/* 生成语言感知的URL */}}
@@ -65,10 +76,10 @@
 
       <!-- 右侧：桌面端控制区域 -->
       <div class="flex items-center space-x-2">
-        <!-- 语言切换按钮 -->
+        <!-- Language Switcher -->
         {{ partial "ui/language-switcher.html" . }}
 
-        <!-- 主题风格切换按钮 -->
+        <!-- Theme Switcher -->
         {{ partial "ui/theme-switcher.html" . }}
 
         <!-- 明暗模式切换按钮 -->
@@ -77,16 +88,16 @@
     </div>
 
     <!-- 移动端布局 -->
-    <div class="flex w-full items-center justify-between md:hidden">
+    <div class="mobile-nav w-full items-center justify-between">
       <!-- 左侧：移动端菜单按钮 -->
       {{ partial "navigation/mobile-menu-toggle.html" . }}
 
       <!-- 右侧：移动端控制区域 -->
       <div class="flex items-center space-x-2">
-        <!-- 语言切换按钮 -->
+        <!-- Language Switcher -->
         {{ partial "ui/language-switcher.html" . }}
 
-        <!-- 主题风格切换按钮 -->
+        <!-- Theme Switcher -->
         {{ partial "ui/theme-switcher.html" . }}
 
         <!-- 明暗模式切换按钮 -->

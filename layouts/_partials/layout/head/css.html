@@ -18,7 +18,10 @@
 {{ end }}  */}}
 
 {{/* main css */}}
-{{ with resources.Get "css/compiled.css" }}
+<!-- Debug: Checking for css/compiled.css -->
+{{ $css := resources.Get "css/compiled.css" }}
+<!-- Debug: css/compiled.css found: {{ if $css }}yes{{ else }}no{{ end }} -->
+{{ with $css }}
   {{ if hugo.IsDevelopment }}
     <link rel="stylesheet" href="{{ .RelPermalink }}" />
   {{ else }}

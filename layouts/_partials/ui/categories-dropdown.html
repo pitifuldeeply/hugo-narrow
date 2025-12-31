@@ -1,0 +1,32 @@
+{{/* Categories Dropdown Component for Mobile/Tablet */}}
+<div class="relative mb-6 xl:hidden z-30">
+  <button
+    class="dropdown-toggle flex items-center gap-2 rounded-lg border border-border bg-background px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+    data-dropdown-type="categories"
+    aria-expanded="false"
+    aria-haspopup="true">
+    {{ partial "features/icon.html" (dict "name" "list" "size" "sm" "ariaLabel" "") }}
+    <span>{{ i18n "categories" | default "Categories" }}</span>
+    {{ partial "features/icon.html" (dict "name" "chevron-down" "size" "xs" "class" "ml-1" "ariaLabel" "") }}
+  </button>
+
+  <div
+    class="dropdown-menu absolute left-0 top-12 z-50 hidden w-64 rounded-lg border border-border bg-background p-2 shadow-lg"
+    data-dropdown-type="categories"
+    role="menu">
+    <ul class="space-y-1">
+      {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+        <li>
+          <a
+            href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}"
+            class="block rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-primary/10 hover:text-primary">
+            <div class="flex items-center justify-between">
+              <span>{{ $name | humanize }}</span>
+              <span class="text-xs opacity-70">{{ $taxonomy.Count }}</span>
+            </div>
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+  </div>
+</div>

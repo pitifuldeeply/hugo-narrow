@@ -113,8 +113,8 @@
 
 
     <!-- 作者信息 -->
-    {{ if .Params.author }}
-      <div class="border-border flex items-center gap-2 border-t pt-2">
+    <!-- {{ if .Params.author }}
+      <div class="border-border flex items-center gap-2 border-t mt-0 pt-8">
         {{ partial "features/icon.html" (dict "name" "user" "size" "sm" "ariaLabel" (i18n "post.author")) }}
         <span class="text-muted-foreground text-sm"
           >{{ i18n "post.author" | default "作者" }}:</span
@@ -123,7 +123,7 @@
           >{{ .Params.author }}</span
         >
       </div>
-    {{ end }}
+    {{ end }} -->
 
   </div>
 </div>

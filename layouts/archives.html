@@ -24,12 +24,12 @@
 
 
     <!-- 统计信息 -->
-    {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
+    {{ $allArticles := where .Site.RegularPages "Section" "articles" }}
     <div class="text-muted-foreground flex items-center gap-4 text-sm">
       <div class="flex items-center gap-1">
         {{ partial "features/icon.html" (dict "name" "file-text" "size" "sm" "ariaLabel" "") }}
         <span
-          >{{ i18n "archives.total_posts" (dict "count" (len $allPosts)) | default (printf "共 %d 篇文章" (len $allPosts)) }}</span
+          >{{ i18n "archives.total_posts" (dict "count" (len $allArticles)) | default (printf "共 %d 篇文章" (len $allArticles)) }}</span
         >
       </div>
       <div class="flex items-center gap-1">
@@ -40,13 +40,13 @@
   </header>
 
   <!-- 时间轴归档 -->
-  {{ if $allPosts }}
+  {{ if $allArticles }}
     <div class="relative">
       <!-- 时间轴线 -->
       <div class="bg-border absolute top-0 bottom-0 left-4 w-0.5"></div>
 
       <!-- 按年份分组 -->
-      {{ range $allPosts.GroupByDate "2006" }}
+      {{ range $allArticles.GroupByDate "2006" }}
         <div class="mb-12">
           <!-- 年份标题 -->
           <div class="relative mb-8 flex items-center">

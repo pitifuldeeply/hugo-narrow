@@ -1,0 +1,103 @@
+{{/* 相关文章组件
+
+  显示与当前文章相关的其他文章
+
+  @context {page} . 当前文章页面对象
+*/}}
+
+{{/* 获取配置参数 */}}
+{{ $relatedCount := .Site.Params.article.relatedArticlesCount | default 3 }}
+{{ $showRelated := .Params.showRelated | default .Site.Params.article.showRelated | default true }}
+
+{{/* 1. Get standard related pages */}}
+{{ $standardRelated := .Site.RegularPages.Related . }}
+
+{{/* 2. Find linked pages within content */}}
+{{ $linkedPages := slice }}
+{{ $currentPermalink := .Permalink }}
+{{ $allPages := .Site.RegularPages }}
+{{/* Extract hrefs */}}
+{{ $links := findRE `href="([^"]+)"` .Content }}
+
+{{ range $links }}
+  {{ $url := . | replaceRE `href="([^"]+)"` "$1" }}
+  {{/* Remove hash fragments */}}
+  {{ $url := index (split $url "#") 0 }}
+  {{/* Remove trailing slash for loose matching */}}
+  {{ $url := strings.TrimSuffix "/" $url }}
+
+  {{ range $allPages }}
+    {{ $pRel := strings.TrimSuffix "/" .RelPermalink }}
+    {{ $pAbs := strings.TrimSuffix "/" .Permalink }}
+    
+    {{ if or (eq $pRel $url) (eq $pAbs $url) }}
+      {{ if ne .Permalink $currentPermalink }}
+        {{ $linkedPages = $linkedPages | append . }}
+      {{ end }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+
+{{/* 3. Merge: Linked pages first, then standard related */}}
+{{ $combined := $linkedPages | append $standardRelated }}
+{{ $related := $combined | uniq | first $relatedCount }}
+
+{{ if and $showRelated $related }}
+  <section class="related-articles mb-12">
+    <!-- 标题 -->
+    <div class="mb-6 flex items-center gap-3">
+      {{ partial "features/icon.html" (dict "name" "related" "size" "md" "ariaLabel" "") }}
+      <h2 class="text-foreground text-2xl font-bold">
+        {{ i18n "post.related_posts" | default "相关文章" }}
+      </h2>
+    </div>
+
+    <!-- 相关文章列表 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 w-full">
+      {{ range $related }}
+        {{ $page := . }}
+        {{/* 摘要处理 */}}
+        {{- $summaryContent := "" -}}
+        {{- if $page.Params.summary -}}
+          {{- $summaryContent = $page.Params.summary -}}
+        {{- else if $page.Params.description -}}
+          {{- $summaryContent = $page.Params.description -}}
+        {{- else if $page.Summary -}}
+          {{- $summaryContent = $page.Summary | plainify | truncate 100 -}}
+        {{- end -}}
+
+        <article class="group h-full">
+          <a href="{{ $page.RelPermalink }}" class="block h-full">
+            <div class="bg-card border-border hover:bg-primary/5 hover:border-primary/20 focus:ring-primary/20 flex flex-col h-full overflow-hidden rounded-xl border transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-lg focus:ring-2 focus:outline-none">
+              
+              <!-- 封面图 -->
+              {{ partial "content/card-image.html" (dict "page" $page "type" "related") }}
+
+              <div class="p-5 flex flex-col flex-1">
+                <!-- 标题 -->
+                <h3 class="text-foreground group-hover:text-primary text-lg font-semibold leading-snug line-clamp-3 mb-2">
+                  {{ $page.Title }}
+                </h3>
+
+                <!-- 摘要 -->
+                {{ if $summaryContent }}
+                  <p class="text-muted-foreground text-sm line-clamp-3 mb-4 flex-1">
+                    {{ $summaryContent }}
+                  </p>
+                {{ end }}
+
+                <!-- 日期 -->
+                <div class="text-xs text-muted-foreground mt-auto flex items-center gap-1">
+                  {{ partial "features/icon.html" (dict "name" "calendar" "size" "sm" "ariaLabel" "") }}
+                  <time datetime="{{ $page.Date.Format "2006-01-02" }}">
+                    {{ $page.Date.Format (i18n "time.date_format" | default "2006年01月02日") }}
+                  </time>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      {{ end }}
+    </div>
+  </section>
+{{ end }}

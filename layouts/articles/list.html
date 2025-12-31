@@ -1,4 +1,5 @@
 {{ define "main" }}
+  {{ partial "ui/categories-sidebar.html" . }}
   <div class="mx-auto max-w-4xl">
     <!-- 面包屑导航 -->
     {{ partial "navigation/breadcrumb.html" . }}
@@ -40,10 +41,13 @@
       </div>
     </header>
 
+    <!-- 分类筛选下拉菜单 (移动端) -->
+    {{ partial "ui/categories-dropdown.html" . }}
+
     <!-- 文章列表 -->
-    {{ $posts := .Paginator.Pages }}
-    {{ if $posts }}
-      {{ partial "content/post-list.html" (dict "posts" $posts) }}
+    {{ $articles := .Paginator.Pages }}
+    {{ if $articles }}
+      {{ partial "content/article-list.html" (dict "articles" $articles) }}
     {{ else }}
       <!-- 空状态 -->
       <div class="py-16 text-center">

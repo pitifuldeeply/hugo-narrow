@@ -1,9 +1,9 @@
 ---
-title: "首页"
+title: "Accueil"
 author:
   name: "Hugo Narrow"
-  title: "简洁的 Hugo 主题"
-  description: "专注于内容和用户体验。"
+  title: "Un thème Hugo épuré et minimaliste"
+  description: "Axé sur le contenu et l'expérience utilisateur."
   avatar: "/images/avatar.svg"
   social:
     - name: "GitHub"
@@ -12,7 +12,7 @@ author:
     - name: "Twitter"
       url: "https://twitter.com/username"
       icon: "twitter"
-    - name: "邮箱"
+    - name: "E-mail"
       url: "mailto:hello@example.com"
       icon: "email"
 ---

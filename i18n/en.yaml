@@ -3,7 +3,7 @@
 nav:
   menu: "Menu"
   home: "Home"
-  posts: "Posts"
+  posts: "Articles"
   projects: "Projects"
   tags: "Tags"
   categories: "Categories"
@@ -21,7 +21,7 @@ nav:
   page_info: "Page {{ .current }} of {{ .total }}"
   total_pages: "{{ .count }} pages total"
   back_home: "Back to Home"
-  post_navigation: "Post navigation"
+  post_navigation: "Article navigation"
 
 # Theme related
 theme:
@@ -43,10 +43,10 @@ footer:
 
 # Home related
 home:
-  recent_posts: "Recent Posts"
+  recent_posts: "Recent Articles"
   showing_posts: "Showing latest"
-  posts: "posts"
-  view_all_posts: "View All Posts"
+  posts: "articles"
+  view_all_posts: "View All Articles"
 
 # Post related
 post:
@@ -58,20 +58,20 @@ post:
   share: "Share"
   previous: "Previous"
   next: "Next"
-  related_posts: "Related Posts"
+  related_posts: "Related Articles"
   reading_time: "Reading time"
-  no_posts: "No posts yet"
+  no_posts: "No articles yet"
   no_posts_desc: "No articles have been published yet. Please check back later."
   list_desc: "Here are all published articles, sorted by date in descending order."
-  total_posts: "{{ .count }} posts total"
+  total_posts: "{{ .count }} articles total"
   author: "Author"
   words: "words"
   words_count: "Word count"
-  no_previous: "No previous post"
-  no_next: "No next post"
-  no_previous_desc: "This is the earliest post"
-  no_next_desc: "This is the latest post"
-  view_more_posts: "View more posts"
+  no_previous: "No previous article"
+  no_next: "No next article"
+  no_previous_desc: "This is the earliest article"
+  no_next_desc: "This is the latest article"
+  view_more_posts: "View more articles"
   reading_time_unit: "min"
 
 # Pagination related
@@ -84,7 +84,7 @@ pagination:
 
 # Search related
 search:
-  placeholder: "Search posts..."
+  placeholder: "Search articles..."
   clear: "Clear"
   close: "Close"
   loading: "Searching..."

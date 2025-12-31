@@ -13,11 +13,11 @@
             <img
               src="{{ $author.avatar }}"
               alt="{{ $author.name | default site.Title }}"
-              class="border-primary/20 h-24 w-24 rounded-full border-4 object-cover shadow-lg" />
+              class="h-24 w-24 rounded-xl object-cover shadow-lg" />
           {{ else }}
             <!-- 默认头像：使用作者姓名首字母 -->
             <div
-              class="bg-primary text-primary-foreground flex h-24 w-24 items-center justify-center rounded-full text-2xl font-bold shadow-lg">
+              class="bg-primary text-primary-foreground flex h-24 w-24 items-center justify-center rounded-xl text-2xl font-bold shadow-lg">
               {{ substr ($author.name | default site.Title) 0 1 | upper }}
             </div>
           {{ end }}

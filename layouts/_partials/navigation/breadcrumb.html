@@ -22,7 +22,7 @@
         {{ if .IsSection }}
           <!-- 分区页面 (如 posts 列表页) -->
           <span class="text-foreground flex items-center gap-0.5 md:gap-1 font-medium min-w-0 flex-shrink-0">
-            {{ if eq .Section "posts" }}
+            {{ if eq .Section "articles" }}
               {{ partial "features/icon.html" (dict "name" "posts" "size" "sm" "ariaLabel" "") }}
               <span class="max-w-[3rem] md:max-w-none truncate">{{ i18n "nav.posts" | default "文章" }}</span>
             {{ else if eq .Section "archives" }}
@@ -108,7 +108,7 @@
               <a
                 href="{{ .Section | relLangURL }}"
                 class="text-muted-foreground hover:text-primary hover:bg-primary/10 flex items-center gap-0.5 md:gap-1 rounded-lg px-1 md:px-3 py-0.5 md:py-1.5 transition-all duration-200 ease-out hover:-translate-y-0.5 hover:scale-[1.02] flex-shrink-0">
-                {{ if eq .Section "posts" }}
+                {{ if eq .Section "articles" }}
                   {{ partial "features/icon.html" (dict "name" "posts" "size" "sm" "ariaLabel" "") }}
                   <span class="max-w-[3rem] md:max-w-none truncate">{{ i18n "nav.posts" | default "文章" }}</span>
                 {{ else if eq .Section "archives" }}

@@ -1,0 +1,59 @@
+{{/*
+  Custom Content Example 1 - Announcement Banner / Featured Post
+  File Location: layouts/_partials/content/custom_1.html
+*/}}
+
+{{ $featured := first 1 (where (where site.RegularPages "Section" "articles") "Params.announcement" true) }}
+
+{{ range $featured }}
+  <section class="featured-post mb-12">
+    <div class="bg-card border-border rounded-xl border p-8 shadow-sm transition-all hover:shadow-md">
+      <div class="flex flex-col gap-6">
+        <!-- Cover Image -->
+        {{ $cover := .Params.cover }}
+        {{ if $cover }}
+          {{ if not (findRE "^https?://" $cover) }}
+            {{ with .Resources.GetMatch $cover }}
+              {{ $cover = .RelPermalink }}
+            {{ end }}
+          {{ end }}
+        <div class="w-full">
+          <a href="{{ .RelPermalink }}" class="block overflow-hidden rounded-xl">
+            <img
+              src="{{ $cover }}"
+              alt="{{ .Title }}"
+              class="aspect-video w-full object-cover transition-transform duration-500 hover:scale-105" />
+          </a>
+        </div>
+        {{ end }}
+
+        <!-- Post Info -->
+        <div class="flex-1 flex flex-col justify-center">
+          <div class="mb-4 flex items-center gap-2 text-sm text-muted-foreground">
+            <span class="bg-primary/10 text-primary rounded-full px-3 py-1 text-xs font-medium">Featured</span>
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+          </div>
+          
+          <h2 class="text-foreground mb-4 text-2xl font-bold leading-tight md:text-3xl">
+            <a href="{{ .RelPermalink }}" class="hover:text-primary transition-colors">
+              {{ .Title }}
+            </a>
+          </h2>
+          
+          <p class="text-muted-foreground mb-6 line-clamp-3 leading-relaxed">
+            {{ .Summary | plainify }}
+          </p>
+          
+          <div>
+            <a
+              href="{{ .RelPermalink }}"
+              class="border-border bg-background text-muted-foreground hover:text-primary hover:bg-primary/10 focus:ring-primary/20 flex items-center justify-center rounded-lg border transition-all duration-300 ease-out hover:scale-105 focus:ring-2 focus:outline-none active:scale-95 px-6 py-4 text-base font-medium">
+              Read Article
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{{ end }}

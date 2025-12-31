@@ -2,21 +2,21 @@
 
   显示文章卡片列表
 
-  @context {slice} .posts 文章列表
+  @context {slice} .articles 文章列表
   @context {string} .title 列表标题 (可选)
   @context {bool} .showTitle 是否显示标题 (默认: false)
   @context {bool} .showViewAll 是否显示"查看所有"按钮 (默认: false)
-  @context {string} .viewAllUrl "查看所有"按钮的链接 (默认: /posts/)
+  @context {string} .viewAllUrl "查看所有"按钮的链接 (默认: /articles/)
 */}}
 
-{{ $posts := .posts }}
+{{ $articles := .articles }}
 {{ $title := .title | default "" }}
 {{ $showTitle := .showTitle | default false }}
 {{ $showViewAll := .showViewAll | default false }}
-{{ $viewAllUrl := .viewAllUrl | default ("/posts/" | relLangURL) }}
+{{ $viewAllUrl := .viewAllUrl | default ("/articles/" | relLangURL) }}
 
-{{ if $posts }}
-  <section class="post-list">
+{{ if $articles }}
+  <section class="article-list">
     <!-- 列表标题 -->
     {{ if and $showTitle $title }}
       <div class="mb-6 flex items-center justify-between">
@@ -27,21 +27,20 @@
 
     <!-- 文章卡片列表 -->
     <div class="space-y-4">
-      {{ range $posts }}
+      {{ range $articles }}
         {{ partial "content/card-base.html" (dict "page" .) }}
       {{ end }}
     </div>
 
-    <!-- 查看所有文章按钮 (底部) -->
+    <!-- Search All Articles Button (Bottom) -->
     {{ if $showViewAll }}
       <div class="mt-8 mb-6 text-center">
-        <a
-          href="{{ $viewAllUrl }}"
+        <button
+          onclick="window.Search && window.Search.show()"
           class="bg-primary text-primary-foreground hover:bg-primary/90 focus:ring-primary/20 inline-flex items-center gap-2 rounded-xl px-6 py-3 font-medium shadow-sm transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-105 hover:shadow-lg focus:ring-2 focus:outline-none active:scale-95">
-          {{ partial "features/icon.html" (dict "name" "posts" "size" "md" "ariaLabel" (i18n "nav.posts")) }}
-          <span>{{ i18n "home.view_all_posts" | default "查看所有文章" }}</span>
-          {{ partial "features/icon.html" (dict "name" "arrow-right" "size" "sm" "ariaLabel" "") }}
-        </a>
+          {{ partial "features/icon.html" (dict "name" "search" "size" "md" "ariaLabel" "Search") }}
+          <span>Search all articles</span>
+        </button>
       </div>
     {{ end }}
 

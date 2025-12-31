@@ -1,0 +1,29 @@
+{{/* Categories Sidebar Component */}}
+<aside
+  id="toc-sidebar"
+  class="toc-sidebar hidden xl:block fixed top-24 toc-sidebar-left"
+  style="max-width: 280px; max-height: 80vh;"
+  aria-label="Categories Navigation">
+
+  <div class="mb-4 flex items-center gap-2">
+    {{ partial "features/icon.html" (dict "name" "list" "size" "sm" "ariaLabel" "") }}
+    <h2 class="text-foreground text-sm font-semibold">
+      Categories
+    </h2>
+  </div>
+
+  <nav
+    id="toc-sidebar-content"
+    class="toc-sidebar-scroll overflow-y-auto pr-2"
+    style="max-height: calc(80vh - 3rem);">
+    <nav id="TableOfContents">
+      <ul>
+        {{ range $name, $taxonomy := .Site.Taxonomies.categories }}
+          <li>
+            <a href="{{ "/categories/" | relLangURL }}{{ $name | urlize }}">{{ $name | humanize }} ({{ $taxonomy.Count }})</a>
+          </li>
+        {{ end }}
+      </ul>
+    </nav>
+  </nav>
+</aside>
