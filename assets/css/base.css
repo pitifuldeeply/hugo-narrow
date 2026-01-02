@@ -136,6 +136,21 @@
   margin-bottom: 0;
 }
 
+/* 链接样式 */
+.prose a {
+  color: var(--tw-prose-links);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--color-primary) 40%, transparent);
+  text-underline-offset: 4px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.prose a:hover {
+  color: var(--color-primary);
+  text-decoration-color: var(--color-primary);
+}
+
 /* 引用块 */
 .prose blockquote {
   @apply border-l-4 pl-6 italic;
@@ -274,24 +289,7 @@
   transform: scale(1);
 }
 
-/* 链接样式 */
-.prose p > a {
-  color: var(--tw-prose-links);
-  text-decoration: underline;
-  text-decoration-color: var(--tw-prose-links);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 2px;
-  transition: all 0.3s ease;
-}
 
-.prose p > a:hover {
-  color: var(--color-primary);
-  text-decoration-color: transparent;
-  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
-  padding: 2px 4px;
-  margin: -2px -4px;
-  border-radius: 4px;
-}
 
 
 

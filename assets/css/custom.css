@@ -1,0 +1,26 @@
+/* 链接样式 - Override Typography plugin */
+.prose a,
+.prose li a,
+.prose p a,
+.prose table a,
+.image-caption a {
+  color: var(--color-primary) !important;
+  text-decoration: underline !important;
+  text-decoration-color: var(--color-primary) !important;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+  transition: all 0.3s ease;
+}
+
+.prose a:hover,
+.prose li a:hover,
+.prose p a:hover,
+.prose table a:hover,
+.image-caption a:hover {
+  color: var(--color-primary) !important;
+  text-decoration-color: transparent !important;
+  background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  padding: 2px 4px;
+  margin: -2px -4px;
+  border-radius: 4px;
+}

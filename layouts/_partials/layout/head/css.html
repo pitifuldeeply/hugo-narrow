@@ -35,6 +35,12 @@
   {{ end }}
 {{ end }}
 
+{{/* custom css */}}
+{{ $custom := resources.Get "css/custom.css" }}
+{{ with $custom }}
+  <link rel="stylesheet" href="{{ .RelPermalink }}" />
+{{ end }}
+
 
 {{/* chroma styles */}}
 {{ with resources.Get "css/chroma.css" }}
