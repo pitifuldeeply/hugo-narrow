@@ -36,8 +36,10 @@
 {{- else if $page.Params.description -}}
   {{- $summaryContent = $page.Params.description -}}
 {{- else if $page.Summary -}}
-  {{- $summaryContent = $page.Summary | plainify | htmlUnescape | replaceRE `\s+` " " | truncate 140 -}}
+  {{- $summaryContent = $page.Summary | plainify | htmlUnescape | replaceRE `[\s\x{00A0}]+` " " | replaceRE `\s+([.,:;!?")\]}”’])` "$1" | replaceRE `([(\[{“‘])\s+` "$1" | strings.TrimSpace | truncate 140 -}}
 {{- end -}}
+
+{{- $summaryContent = $summaryContent | strings.TrimSpace -}}
 
 {{/* 文章卡片 */}}
 <article class="group">
@@ -66,7 +68,7 @@
         <!-- 文章摘要 -->
         {{ if $summaryContent }}
           <p class="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
-            {{ $summaryContent }}
+            {{ $summaryContent | safeHTML }}
           </p>
         {{ end }}
 
