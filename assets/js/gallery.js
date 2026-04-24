@@ -270,7 +270,10 @@ class ImageGallery {
     figures.forEach((figure, index) => {
       figure.classList.add('single-image');
       
-      if (this.config.lightbox) {
+      // Check if lightbox is enabled globally or for this specific image
+      const lightboxEnabled = this.config.lightbox || figure.getAttribute('data-lightbox-enabled') === 'true';
+      
+      if (lightboxEnabled) {
         this.setupLightboxForSingleImage(figure, `single-${Date.now()}-${index}`);
       }
     });

@@ -199,10 +199,10 @@ mermaid:
 
 # GLightbox
 lightbox:
-  enabled: false
+  enabled: true
   loop: true
-  width: 80vw
-  height: 80vh
+  width: 90vw
+  height: 90vh
   touchNavigation: true
   draggable: true
   zoomable: true
