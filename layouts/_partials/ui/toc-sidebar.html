@@ -31,8 +31,8 @@
   <!-- 侧边栏目录容器 - 使用固定定位 -->
   <aside
     id="toc-sidebar"
-    class="toc-sidebar hidden xl:block fixed top-24 {{ if eq $tocPosition "left" }}toc-sidebar-left{{ else }}toc-sidebar-right{{ end }}"
-    style="max-width: {{ $tocMaxWidth }}; max-height: {{ $tocMaxHeight }};"
+    class="toc-sidebar hidden xl:block fixed {{ if eq $tocPosition "left" }}toc-sidebar-left{{ else }}toc-sidebar-right{{ end }}"
+    style="top: 12rem; max-width: {{ $tocMaxWidth }}; max-height: {{ $tocMaxHeight }};"
     aria-label="{{ i18n "toc.navigation" | default "文章目录导航" }}">
 
     <!-- 目录标题 -->
