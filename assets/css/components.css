@@ -126,15 +126,15 @@
   z-index: 30;
 }
 
-/* 左侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 32px */
-/* 896px = max-w-4xl, 280px = TOC宽度, 32px = 间距 */
+/* 左侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 48px */
+/* 896px = max-w-4xl, 280px = TOC宽度, 48px = 间距 */
 .toc-sidebar-left {
-  left: max(1rem, calc((100vw - 896px) / 2 - 280px - 2rem));
+  left: max(1rem, calc((100vw - 896px) / 2 - 280px - 3rem));
 }
 
-/* 右侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 32px */
+/* 右侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 48px */
 .toc-sidebar-right {
-  right: max(1rem, calc((100vw - 896px) / 2 - 280px - 2rem));
+  right: max(1rem, calc((100vw - 896px) / 2 - 280px - 3rem));
 }
 
 #toc-sidebar-content {
