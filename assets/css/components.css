@@ -122,19 +122,19 @@
 
 /* TOC 侧边栏样式 */
 .toc-sidebar {
-  width: 280px;
+  width: 220px;
   z-index: 30;
 }
 
-/* 左侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 80px */
-/* 896px = max-w-4xl, 280px = TOC宽度, 80px = 间距 */
+/* 左侧定位 - 计算公式：(100vw - 896px) / 2 - 220px - 80px */
+/* 896px = max-w-4xl, 220px = TOC宽度, 80px = 间距 */
 .toc-sidebar-left {
-  left: max(1rem, calc((100vw - 896px) / 2 - 280px - 5rem));
+  left: max(1rem, calc((100vw - 896px) / 2 - 220px - 5rem));
 }
 
-/* 右侧定位 - 计算公式：(100vw - 896px) / 2 - 280px - 80px */
+/* 右侧定位 - 计算公式：(100vw - 896px) / 2 - 220px - 80px */
 .toc-sidebar-right {
-  right: max(1rem, calc((100vw - 896px) / 2 - 280px - 5rem));
+  right: max(1rem, calc((100vw - 896px) / 2 - 220px - 5rem));
 }
 
 #toc-sidebar-content {
