@@ -24,3 +24,11 @@
   margin: -2px -4px;
   border-radius: 4px;
 }
+
+/* Content images: constrain by width or height, whichever limit is hit first */
+.prose img {
+  max-width: 75%;
+  max-height: 350px;
+  width: auto;
+  height: auto;
+}
